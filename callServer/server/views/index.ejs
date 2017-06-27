@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.7.3/socket.io.min.js"></script>
+    <script src="http://cdn.peerjs.com/0.3/peer.min.js"></script>
+    <style>
+        video{
+            width: 400px;
+            height: 400px;
+            background-color: #999;
+        }
+        body{
+            text-align: center;
+        }
+        #btnCall{
+            padding: 5px 25px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Видео 1</h1>
+    <button id="callAdmin" onclick="callAdminClick()">getUserMedia</button>
+    <br>
+    <video id="video1" autoplay="true"></video>
+
+    <h1>Видео 2</h1>
+    <video id="video2" autoplay="true"></video>
+
+    <script type="text/javascript" src="/js/main.js"></script>
+    <script type="text/javascript">
+
+
+    //    socket.on('offer', function (data) {
+    //       console.log("socket.on('offer'):", data);
+    //       pc2_receivedOffer(data);
+    //     });
+       //
+    //     socket.on('answer', function (data) {е
+    //       console.log("socket.on('answer'):", data);
+    //       pc1.setRemoteDescription( new RTCSessionDescription(data) );
+    //     });
+       //
+    //     socket.on('ice1', function (data) {
+    //       console.log("socket.on('ice1'):", data);
+    //       pc2.addIceCandidate(new RTCIceCandidate(data));
+    //     });
+       //
+    //     socket.on('ice2', function (data) {
+    //       console.log("socket.on('ice2'):", data);
+    //       pc1.addIceCandidate(new RTCIceCandidate(data));
+    //     });
+       //
+    //     socket.on('hangup', function (data) {
+    //       console.log("socket.on('hangup'):", data);
+    //       remoteVideo2.src = ""; pc2.close(); pc2 = null;
+    //     });
+    </script>
+</body>
+</html>

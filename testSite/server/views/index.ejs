@@ -1,0 +1,148 @@
+<% layout('/layout/page') -%>
+
+<% if (user) { %>
+    <p class="lead"> <%= user.username %> </p>
+
+        <% if(user.type==0){ %>
+        <p class="lead">Обычный пользователь</p>
+        <% } else { %>
+            <p class="lead"> Администратор </p>
+        <% } %>
+        <div class="tabs-wrapper">
+            <ul class="nav classic-tabs tabs-cyan" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link waves-light active" data-toggle="tab" href="#panel51" role="tab">Call Service</a>
+                </li>
+                <% if(user.type!=0){ %>
+                <li class="nav-item">
+                    <a class="nav-link waves-light listHistoryLink" data-toggle="tab" href="#panel52" role="tab">List History</a>
+                </li>
+                <% } %>
+            </ul>
+        </div>
+
+        <% if(user.type!=0){ %>
+        <div class="modal fade" class="addSummuryForm" data-backdrop="static" id="modalAddSummaryForm" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+            <div class="modal-content">
+              <div class="card-header info-color white-text">
+                Add Summary
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body">
+                  <!--Naked Form-->
+                    <div class="card-block">
+
+                        <!--Header-->
+                        <div class="text-center">
+                            <h3><i class="fa fa-file-text-o"></i> Summary</h3>
+                            <hr class="mt-2 mb-2">
+                        </div>
+
+                        <!--Body-->
+
+                        <div class="md-form">
+                            <i class="fa fa-tag prefix"></i>
+                            <input type="text" id="form32" class="form-control addSummuryForm__titleInput validate">
+                            <label for="form32" data-error="empty">Title</label>
+                        </div>
+
+                        <div class="md-form" style="margin: 40px 0;">
+                            <i class="fa fa-pencil prefix"></i>
+                            <textarea type="text" id="form8" class="md-textarea addSummuryForm__textInput validate"></textarea>
+                            <label for="form8" data-error="empty" validate>Text Summary</label>
+                        </div>
+                    </div>
+              </div>
+              <div class="modal-footer">
+                  <button class="btn btn-default info-color addSummuryForm__btnSave">Save</button>
+                  <button type="button" class="btn red" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="CallVideo__phone-container">
+            <audio class="CallVideo__phone-audio" src="/phoneCall.mp3"></audio>
+            <div class="container CallVideo__phone-modal">
+                <div class="frame">
+                    <h4 class="white text-center frame__title">callService</h4>
+                    <svg width="14px" height="60px" class="line line-1">
+                        <path d="M2,58 C14,45 14,15 2,2"></path>
+                    </svg>
+                    <svg width="14px" height="60px" class="line line-2">
+                        <path d="M2,58 C14,45 14,15 2,2"></path>
+                    </svg>
+                    <svg width="14px" height="60px" class="line line-3">
+                        <path d="M2,58 C14,45 14,15 2,2"></path>
+                    </svg>
+                    <svg width="14px" height="60px" class="line line-4">
+                        <path d="M12,58 C0,45 0,15 12,2"></path>
+                    </svg>
+                    <svg width="14px" height="60px" class="line line-5">
+                        <path d="M12,58 C0,45 0,15 12,2"></path>
+                    </svg>
+                    <svg width="14px" height="60px" class="line line-6">
+                        <path d="M12,58 C0,45 0,15 12,2"></path>
+                    </svg>
+                    <svg width="50px" height="54px" viewBox="0 0 50 54" class="bell">
+                        <path d="M1.13063517,45.0453694 C1.88439195,45.7991262 2.80138269,46.1760046 3.82399539,46.1760046 L17.2955975,46.1760046 C17.2955975,48.331653 18.0493543,50.110423 19.5592683,51.6179365 C21.0667819,53.1254501 22.8983629,53.8816074 25.0012002,53.8816074 C27.1544481,53.8816074 28.9332181,53.1254501 30.4431322,51.6179365 C31.9506457,50.110423 32.7044025,48.331653 32.7044025,46.1760046 L46.1760046,46.1760046 C47.1986173,46.1760046 48.115608,45.7991262 48.8693648,45.0453694 C49.6231216,44.2892122 50,43.3746219 50,42.3496087 C46.1760046,39.1185367 43.3194104,35.1313073 41.379807,30.3879207 C39.4402036,25.6469346 38.4704018,20.6370925 38.4704018,15.408805 C38.4704018,12.0697105 37.5006001,9.48197225 35.6138077,7.54236881 C33.6742042,5.54995439 31.033655,4.41931922 27.6945605,3.98722934 C27.8553939,3.66316194 27.9106054,3.28628355 27.9106054,2.90940516 C27.9106054,2.10043689 27.639349,1.40189159 27.0488262,0.86177925 C26.5087138,0.268855922 25.807768,0 25.0012002,0 C24.192232,0 23.5464977,0.268855922 23.0063853,0.86177925 C22.413462,1.40189159 22.1446061,2.10043689 22.1446061,2.90940516 C22.1446061,3.28628355 22.1974171,3.66316194 22.360651,3.98722934 C19.019156,4.41931922 16.3786068,5.54995439 14.4390033,7.54236881 C12.4993999,9.48197225 11.5295982,12.0697105 11.5295982,15.408805 C11.5295982,20.6370925 10.5597964,25.6469346 8.620193,30.3879207 C6.68058956,35.1313073 3.82399539,39.1185367 0,42.3496087 C0,43.3746219 0.376878391,44.2892122 1.13063517,45.0453694 L1.13063517,45.0453694 Z M20.2050026,45.6911037 C20.52907,45.6911037 20.6899035,45.8519372 20.6899035,46.1760046 C20.6899035,47.3618513 21.1195929,48.384464 21.9837726,49.1934322 C22.7903404,50.0552115 23.8153536,50.4873014 25.0012002,50.4873014 C25.3228672,50.4873014 25.4861011,50.6481348 25.4861011,50.9722022 C25.4861011,51.2938691 25.3228672,51.4571031 25.0012002,51.4571031 C23.5464977,51.4571031 22.3054395,50.9169907 21.2828268,49.894378 C20.2578136,48.8693648 19.7201018,47.6307072 19.7201018,46.1760046 C19.7201018,45.8519372 19.8809352,45.6911037 20.2050026,45.6911037 L20.2050026,45.6911037 Z"></path>
+                    </svg>
+                    <div class="frame__buttons">
+                        <a class="btn-floating btn-small success-color CallVideo__btn_reciveCall"><i class="fa fa-phone"></i></a>
+                        <a class="btn-floating btn-small red CallVideo__btn_rejectCall"><i class="fa fa-phone"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <% } %>
+        <!-- Tab panels -->
+        <div class="tab-content">
+            <!--Panel 1-->
+            <div class="tab-pane fade container in show active callService" id="panel51" role="tabpanel">
+                <div class="row">
+                    <div class="col-9 card CallVideo">
+                        <h3 class="card-header white white-text"><a class="btn btn-info btn-rounded CallVideo__btn_makeCall">Make Call</a></h3>
+                        <div class="card-block CallVideo__container">
+                            <div class="CallVideo__video-container">
+                                <video class="info-color CallVideo__online" src="" autoplay="true"></video>
+                                <video class="special-color CallVideo__local" src="" autoplay="true"></video>
+                            </div>
+                            <div class="CallVideo__nav">
+                                <a class="btn-floating btn-small success-color CallVideo__btn_stopVideo"><i class="fa fa-video-camera"></i></a>
+                                <a class="btn-floating btn-small success-color CallVideo__btn_muteVideo"><i class="fa fa-microphone"></i></a>
+                                <a class="btn-floating btn-small red CallVideo__btn_resetCall"><i class="fa fa-phone"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                        <div class="col CallMessages chatbox-holder">
+                              <div class="chatbox">
+                                <h3 class="card-header info-color white-text">Chat</h3>
+                                <div class="chat-messages">
+                                </div>
+                                <div class="md-form chat-input-holder">
+                                  <textarea type="text" id="form7" class="md-textarea chat-textArea" placeholder="Message"></textarea>
+                                  <i class="fa fa-pencil prefix"></i>
+                              </div>
+                              </div>
+                        </div>
+                    </div>
+            </div>
+            <!--/.Panel 1-->
+
+            <% if(user.type!=0){ %>
+            <div class="tab-pane fade container CallListHistory" id="panel52" role="tabpanel">
+                <div class="row" style="display: block;">
+                    <div class="CallListHistory__summarys">
+                    </div>
+                    <div>
+                        <a class="btn-floating btn-large green CallListHistory__btn-more"><i class="fa fa-chevron-down" aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+            <% } %>
+        </div>
+    <% } else { %>
+        <p class="lead" >Hello Guest</p>
+    <% }%>

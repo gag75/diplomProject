@@ -1,0 +1,22 @@
+{
+    "port": 8080,
+    "mongoose": {
+        "uri": "mongodb://localhost/callServerV2",
+        "options": {
+            "server": {
+                "socketOptions": {
+                    "keepAlive": 1
+                }
+            }
+        }
+    },
+    "session": {
+        "secret": "secretCookie",
+        "key": "sid",
+        "cookie": {
+            "path": "/",
+            "httpOnly": true,
+            "maxAge": null
+        }
+    }
+}
